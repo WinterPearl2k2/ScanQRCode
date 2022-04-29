@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable-xhdpi/shadow_image.xml" value="0.26205128205128203" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/cus_btn.xml" value="0.14166666666666666" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/cus_btn_result.xml" value="0.26614583333333336" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/cus_btn_scanqr.xml" value="0.14166666666666666" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/cus_btn_scanqr2.xml" value="0.14166666666666666" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/cus_navigation.xml" value="0.14166666666666666" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/cus_result.xml" value="0.26614583333333336" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_add_image.xml" value="0.26205128205128203" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_baseline_add_ic_call_36.xml" value="0.1859375" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1859375" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_baseline_insert_link_36.xml" value="0.26614583333333336" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_baseline_star_border_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_flash_off.xml" value="0.26205128205128203" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_flash_on.xml" value="0.26205128205128203" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_rotate_cam.xml" value="0.26205128205128203" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/outline_drive_file_rename_outline_20.xml" value="0.2046875" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/outline_history_24.xml" value="0.2046875" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/outline_qr_code_scanner_24.xml" value="0.2046875" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/outline_settings_24.xml" value="0.2046875" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/outline_zoom_in_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/outline_zoom_out_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/plus_frame.xml" value="0.1859375" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/activity_after_scan.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/activity_create.xml" value="0.12552083333333333" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/activity_ean_scan.xml" value="0.2" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/activity_main.xml" value="0.136" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/activity_qrimage.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/activity_screen_slide.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/activity_test_case1.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/animation_scan.xml" value="0.121875" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/cus_navigation.xml" value="0.12552083333333333" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_blank.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_create.xml" value="0.12552083333333333" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_history.xml" value="0.2" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_history_.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_home.xml" value="0.12552083333333333" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_permission_cam.xml" value="0.16458333333333333" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_scan__home_.xml" value="0.264" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_scan_home.xml" value="0.2" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_screen_slide_page.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_setting.xml" value="0.12552083333333333" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_setting_.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/headerbar.xml" value="0.1" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/resuly_scan.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/test1.xml" value="0.2" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/menu/navigation.xml" value="0.19852941176470587" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1859375" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1859375" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
