@@ -48,9 +48,9 @@ public class Fragment_Scan extends Fragment {
         btn_minus_frame = view.findViewById(R.id.minus_frame);
         btn_plus_frame = view.findViewById(R.id.plus_frame);
         scannerView = view.findViewById(R.id.scanner_view);
-//        btn_flash = view.findViewById(R.id.btn_flash);
-//        btn_rotate_cam = view.findViewById(R.id.rotate_cam);
-//        btn_scan_gallery = view.findViewById(R.id.scan_gallery);
+        btn_flash = view.findViewById(R.id.btn_flash);
+        btn_rotate_cam = view.findViewById(R.id.rotate_cam);
+        btn_scan_gallery = view.findViewById(R.id.scan_gallery);
         mCodeScanner = new CodeScanner(activity, scannerView);
         Scan();
         ZoomFrame();
@@ -128,11 +128,11 @@ public class Fragment_Scan extends Fragment {
                 if(Flash == true) {
                     mCodeScanner.setFlashEnabled(true);
                     Flash = false;
-                    btn_flash.setImageResource(R.drawable.ic_flash_on);
+                    btn_flash.setImageResource(R.drawable.ic_flash_off);
                 }else {
                     mCodeScanner.setFlashEnabled(false);
                     Flash = true;
-                    btn_flash.setImageResource(R.drawable.ic_flash_off);
+                    btn_flash.setImageResource(R.drawable.ic_flash_on);
                 }
             }
         });
