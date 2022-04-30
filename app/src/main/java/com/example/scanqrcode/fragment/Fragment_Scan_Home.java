@@ -8,13 +8,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,7 +27,7 @@ import com.example.scanqrcode.R;
 import com.example.scanqrcode.ScanGallery;
 
 public class Fragment_Scan_Home extends Fragment{
-    private final static int requestPer = 100;
+    private final static int requestPer = 100, requestPer2 = 200, requestPer3 = 300;
     public final static String ALLOW_KEY = "ALLOWED";
     public final static String CAMERA_PREF = "camera_pref";
     boolean check = false;
@@ -67,9 +67,13 @@ public class Fragment_Scan_Home extends Fragment{
                 Intent photoItent = new Intent(Intent.ACTION_PICK);
                 scanGallery = new ScanGallery(getActivity(), photoItent);
                 photoItent.setType("image/*");
-                startActivityForResult(photoItent, 10000);
+                startActivityForResult(photoItent, 101);
             }
         });
+
+        if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            openScan();
+        }
         return view;
     }
 
@@ -87,12 +91,19 @@ public class Fragment_Scan_Home extends Fragment{
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        scanGallery.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 200 && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            openScan();
+        }else if(requestCode == 101) {
+            scanGallery.onActivityResult(requestCode, resultCode, data);
+        } else if(requestCode == 100 && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            openScan();
+        }
+//        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void checkPermission() {
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if(ActivityCompat.checkSelfPermission(getActivity(),
                     Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -105,21 +116,27 @@ public class Fragment_Scan_Home extends Fragment{
                             Manifest.permission.CAMERA)) {
                         showPer();
                     } else {
-                        ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, requestPer);
+                        requestPermissions(new String[] {Manifest.permission.CAMERA}, requestPer);
+//                        ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, requestPer);
                     }
                 }
             } else {
                 openScan();
             }
-//        } else openScan();
+        } else openScan();
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
         switch (requestCode) {
             case requestPer: {
-                Toast.makeText(getActivity(), "Haha", Toast.LENGTH_SHORT).show();
+
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    openScan();
+                    break;
+                }
+
                 for (int i = 0, len = permissions.length; i < len; i++) {
                     String permission = permissions[i];
                     if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
@@ -127,8 +144,8 @@ public class Fragment_Scan_Home extends Fragment{
                                 ActivityCompat.shouldShowRequestPermissionRationale
                                         (getActivity(), permission);
                         if (showRationale) {
-//                            showPer();
-                            saveToPreferences(getActivity(), ALLOW_KEY, true);
+                            showPer();
+//                            saveToPreferences(getActivity(), ALLOW_KEY, true);
                         } else if (!showRationale) {
                             // user denied flagging NEVER ASK AGAIN
                             // you can either enable some fall back,
@@ -142,6 +159,7 @@ public class Fragment_Scan_Home extends Fragment{
                 }
             }
         }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     public void showPer() {
@@ -156,7 +174,9 @@ public class Fragment_Scan_Home extends Fragment{
                 .setPositiveButton("Allow", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, requestPer);
+//                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, requestPer);
+                        requestPermissions(new String[] {Manifest.permission.CAMERA}, requestPer);
+
                     }
                 }).show();
     }
@@ -176,7 +196,7 @@ public class Fragment_Scan_Home extends Fragment{
                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                         Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
                         intent.setData(uri);
-                        startActivity(intent);
+                        startActivityForResult(intent, 200);
                     }
                 }).show();
     }
@@ -188,55 +208,8 @@ public class Fragment_Scan_Home extends Fragment{
         fragmentTransaction.replace(R.id.fragment1, fragment2);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-    }
+//        FragmentManager.BackStackEntry first = getActivity().getSupportFragmentManager().getBackStackEntryAt(0);
+//        getActivity().getSupportFragmentManager().popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-    /*
-    private void checkPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.CAMERA)) {
-                    new AlertDialog.Builder(getActivity()).setCancelable(false).setTitle("Chưa cấp quyền cam")
-                            .setMessage("Vui lòng cấp quyền cho camera để sử dụng tín năng quét")
-                            .setNegativeButton("Huỷ", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.cancel();
-                                }
-                            })
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, requestPer);
-                                }
-                            }).show();
-                } else {
-                    new AlertDialog.Builder(getActivity()).setCancelable(false).setTitle("Chưa cấp quyền cam")
-                            .setMessage("Vui lòng cấp quyền cho camera để sử dụng tín năng quét QR")
-                            .setNegativeButton("Huỷ", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.cancel();
-                                }
-                            })
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                    Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
-                                    intent.setData(uri);
-                                    startActivity(intent);
-                                }
-                            }).show();
-                }
-            } else {
-//                requestPer = 10000;
-                        Fragment_Scan fragment2 = new Fragment_Scan();
-                        FragmentManager fragmentManager = getFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment1, fragment2);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-            }
-        }
-    }*/
+    }
 }
