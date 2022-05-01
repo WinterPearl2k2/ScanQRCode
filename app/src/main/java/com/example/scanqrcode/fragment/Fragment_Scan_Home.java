@@ -14,54 +14,60 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
+import com.budiyev.android.codescanner.CodeScanner;
+import com.budiyev.android.codescanner.CodeScannerView;
+import com.budiyev.android.codescanner.DecodeCallback;
+import com.example.scanqrcode.EAN;
 import com.example.scanqrcode.R;
 import com.example.scanqrcode.ScanGallery;
+import com.google.zxing.Result;
 
 public class Fragment_Scan_Home extends Fragment{
-    private final static int requestPer = 100, requestPer2 = 200, requestPer3 = 300;
+    private final static int requestPer = 100;
     public final static String ALLOW_KEY = "ALLOWED";
     public final static String CAMERA_PREF = "camera_pref";
+    ConstraintLayout noScan;
+    FrameLayout Scan;
     boolean check = false;
-    ScanGallery scanGallery;
     View view;
-    int d = 0;
-
-    Button taolao, gallery;
+    CodeScanner mCodeScanner;
+    ScanGallery scanGallery;
+    LinearLayout btn_Cam, btn_Gallery;
+    SeekBar zoom_Frame, zoom_Camera;
+    ImageButton btn_QRCode, btn_BarCode, btn_increase, btn_decrease,
+            btn_plus_frame, btn_minus_frame, btn_flash,
+            btn_rotate_cam, btn_scan_gallery;
+    CodeScannerView scannerView;
+    boolean Flash = true, Switch = true;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_setting, container, false);
-
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//                ActivityCompat.requestPermissions(getActivity(),
-//                        new String[] {Manifest.permission.CAMERA},
-//                        requestPer);
-//            } else {
-//                openScan();
-//            }
-//        } else openScan();
-
-        taolao = view.findViewById(R.id.bb);
-        taolao.setOnClickListener(new View.OnClickListener() {
+        view = inflater.inflate(R.layout.fragment_scan_home, container, false);
+        Scan = view.findViewById(R.id.scan);
+        noScan = view.findViewById(R.id.noScan);
+        btn_Cam = view.findViewById(R.id.btn_cam);
+        btn_Cam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checkPermission();
             }
         });
-        gallery = view.findViewById(R.id.bb2);
-        gallery.setOnClickListener(new View.OnClickListener() {
+        btn_Gallery = view.findViewById(R.id.btn_gallery);
+        btn_Gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent photoItent = new Intent(Intent.ACTION_PICK);
@@ -72,10 +78,231 @@ public class Fragment_Scan_Home extends Fragment{
         });
 
         if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            check = true;
             openScan();
         }
+        btn_QRCode = view.findViewById(R.id.btn_QRCODE);
+        btn_BarCode = view.findViewById(R.id.btn_BarCode);
+        btn_increase = view.findViewById(R.id.increase);
+        btn_decrease = view.findViewById(R.id.decrease);
+        zoom_Frame = view.findViewById(R.id.zoom_frame);
+        zoom_Camera = view.findViewById(R.id.zoom_camera);
+        btn_minus_frame = view.findViewById(R.id.minus_frame);
+        btn_plus_frame = view.findViewById(R.id.plus_frame);
+        scannerView = view.findViewById(R.id.scanner_view);
+        btn_flash = view.findViewById(R.id.btn_flash);
+        btn_rotate_cam = view.findViewById(R.id.rotate_cam);
+        btn_scan_gallery = view.findViewById(R.id.scan_gallery);
+        mCodeScanner = new CodeScanner(getActivity(), scannerView);
+        Scan();
+        ZoomFrame();
+        ZoomCamera();
+        FlashSwitch();
+        RotateCamera();
+        ScanByGallery();
         return view;
     }
+
+    private void ScanByGallery() {
+        btn_scan_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent photoItent = new Intent(Intent.ACTION_PICK);
+                scanGallery = new ScanGallery(getActivity(), photoItent);
+                photoItent.setType("image/*");
+                startActivityForResult(photoItent, 101);
+            }
+        });
+    }
+
+    private void Scan() {
+        mCodeScanner.setAutoFocusEnabled(true);
+        mCodeScanner.setDecodeCallback(new DecodeCallback() {
+            @Override
+            public void onDecoded(@NonNull final Result result) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(getActivity(), EAN.class);
+                        intent.putExtra("linksp", result.getText());
+                        intent.putExtra("title", result.getBarcodeFormat().toString());
+                        startActivity(intent);
+//                        result.getBarcodeFormat().toString()
+//                        Toast.makeText(getActivity(), result.getText()+"", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+        scannerView.setOnClickListener(view -> {
+            if(check == true)
+                mCodeScanner.startPreview();
+//            mCodeScanner.setAutoFocusEnabled(true);
+        });
+    }
+
+    private void RotateCamera() {
+        btn_rotate_cam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Switch == true) {
+                    mCodeScanner.setCamera(1);
+                    mCodeScanner.setAutoFocusEnabled(true);
+                    Switch = false;
+                }else {
+                    mCodeScanner.setCamera(0);
+                    mCodeScanner.setAutoFocusEnabled(true);
+                    Switch = true;
+                }
+            }
+        });
+    }
+
+    private void FlashSwitch() {
+        btn_flash.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                if(Flash == true) {
+                    mCodeScanner.setFlashEnabled(true);
+                    Flash = false;
+                    btn_flash.setImageResource(R.drawable.ic_flash_off);
+                }else {
+                    mCodeScanner.setFlashEnabled(false);
+                    Flash = true;
+                    btn_flash.setImageResource(R.drawable.ic_flash_on);
+                }
+            }
+        });
+    }
+
+    private void ZoomCamera() {
+        btn_increase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(zoom_Camera.getProgress() >= zoom_Camera.getMax()) {
+                    mCodeScanner.setZoom(zoom_Camera.getProgress());
+                }else {
+                    zoom_Camera.setProgress(zoom_Camera.getProgress() + 5);
+                    mCodeScanner.setZoom(zoom_Camera.getProgress());
+                }
+            }
+        });
+        btn_decrease.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(zoom_Camera.getProgress() <= 0) {
+                    mCodeScanner.setZoom(zoom_Camera.getProgress());
+                }else {
+                    zoom_Camera.setProgress(zoom_Camera.getProgress() - 5);
+                    mCodeScanner.setZoom(zoom_Camera.getProgress());
+                }
+            }
+        });
+
+        zoom_Camera.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                mCodeScanner.setZoom(i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+    private void ZoomFrame() {
+        zoom_Frame.setMax(80);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            zoom_Frame.setMin(20);
+        }
+        btn_QRCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    zoom_Frame.setMin(20);
+                }
+                scannerView.setFrameAspectRatioWidth(1);
+                btn_BarCode.setBackgroundResource(R.drawable.cus_btn_scanqr);
+                btn_QRCode.setBackgroundResource(R.drawable.cus_btn_scanqr2);
+            }
+        });
+
+        btn_BarCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    zoom_Frame.setMin(40);
+                }
+
+                scannerView.setFrameAspectRatioWidth(3);
+                btn_BarCode.setBackgroundResource(R.drawable.cus_btn_scanqr2);
+                btn_QRCode.setBackgroundResource(R.drawable.cus_btn_scanqr);
+            }
+        });
+
+        btn_plus_frame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (zoom_Frame.getProgress() >= 80) {
+                    scannerView.setFrameSize(zoom_Frame.getProgress()/100F);
+                }else {
+                    zoom_Frame.setProgress(zoom_Frame.getProgress() + 6);
+                    scannerView.setFrameSize(zoom_Frame.getProgress() / 100F);
+                }
+            }
+        });
+
+        btn_minus_frame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (zoom_Frame.getProgress() <= 20) {
+                    scannerView.setFrameSize(zoom_Frame.getProgress()/100F);
+                }else {
+                    zoom_Frame.setProgress(zoom_Frame.getProgress() - 6);
+                    scannerView.setFrameSize(zoom_Frame.getProgress() / 100F);
+                }
+            }
+        });
+
+        zoom_Frame.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                scannerView.setFrameSize(i/100F);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+//                scannerView.setFrameSize(zoom_Frame.getProgress()/100F);
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (check == true)
+        mCodeScanner.startPreview();
+    }
+
+    @Override
+    public void onPause() {
+        if(check == true)
+        mCodeScanner.releaseResources();
+        super.onPause();
+    }
+
 
     public static void saveToPreferences(Context context, String key, Boolean allowed) {
         SharedPreferences mPrefs = context.getSharedPreferences(CAMERA_PREF, Context.MODE_PRIVATE);
@@ -93,10 +320,12 @@ public class Fragment_Scan_Home extends Fragment{
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 200 && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            check = true;
             openScan();
         }else if(requestCode == 101) {
             scanGallery.onActivityResult(requestCode, resultCode, data);
         } else if(requestCode == 100 && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            check = true;
             openScan();
         }
 //        super.onActivityResult(requestCode, resultCode, data);
@@ -121,9 +350,13 @@ public class Fragment_Scan_Home extends Fragment{
                     }
                 }
             } else {
+                check = true;
                 openScan();
             }
-        } else openScan();
+        } else {
+            check = true;
+            openScan();
+        }
     }
 
     @Override
@@ -133,6 +366,7 @@ public class Fragment_Scan_Home extends Fragment{
             case requestPer: {
 
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    check = true;
                     openScan();
                     break;
                 }
@@ -183,7 +417,7 @@ public class Fragment_Scan_Home extends Fragment{
 
     private void showSetting() {
         new AlertDialog.Builder(getActivity()).setCancelable(false).setTitle("Chưa cấp quyền cam")
-                .setMessage("Vui lòng cấp quyền cho camera để sử dụng tín năng quét QR")
+                .setMessage("Chỉ có thể quét bằng camera khi được cấp quyền, vui lòng truy cập vào cài đặt để cấp quyền camera.")
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -202,14 +436,14 @@ public class Fragment_Scan_Home extends Fragment{
     }
 
     private void openScan() {
-        Fragment_Scan fragment2 = new Fragment_Scan();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment1, fragment2);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-//        FragmentManager.BackStackEntry first = getActivity().getSupportFragmentManager().getBackStackEntryAt(0);
-//        getActivity().getSupportFragmentManager().popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//        Fragment_Scan fragment2 = new Fragment_Scan();
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.fragment1, fragment2);
+//        fragmentTransaction.addToBackStack(null);
+//        fragmentTransaction.commit();
+        Scan.setVisibility(View.VISIBLE);
+        noScan.setVisibility(View.GONE);
 
     }
 }

@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable-xhdpi/shadow_image.xml" value="0.26205128205128203" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/cus_btn.xml" value="0.14166666666666666" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/cus_btn_per.xml" value="0.1859375" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/cus_btn_result.xml" value="0.26614583333333336" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/cus_btn_scanqr.xml" value="0.14166666666666666" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/cus_btn_scanqr2.xml" value="0.14166666666666666" />
@@ -13,6 +14,7 @@
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_add_image.xml" value="0.26205128205128203" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_baseline_add_ic_call_36.xml" value="0.1859375" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1859375" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_baseline_insert_link_36.xml" value="0.26614583333333336" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/ic_baseline_star_border_24.xml" value="0.26614583333333336" />
@@ -42,7 +44,7 @@
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_home.xml" value="0.12552083333333333" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_permission_cam.xml" value="0.16458333333333333" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_scan__home_.xml" value="0.264" />
-        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_scan_home.xml" value="0.2" />
+        <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_scan_home.xml" value="0.264" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_screen_slide_page.xml" value="0.25" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_setting.xml" value="0.12552083333333333" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/layout/fragment_setting_.xml" value="0.25" />

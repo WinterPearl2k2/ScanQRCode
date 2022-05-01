@@ -1,145 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.Fragment_Scan_Home">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment1"
+    android:orientation="vertical">
 
-        <com.budiyev.android.codescanner.CodeScannerView
-            android:id="@+id/scanner_view"
+        <!-- TODO: Update blank fragment layout -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/noScan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:frameAspectRatioHeight="1"
-            app:frameAspectRatioWidth="1"
-            app:frameColor="#F06292"
-            app:frameSize=".75"
-            app:frameCornersRadius="30dp"
-            app:frameThickness="4dp"
-            app:frameCornersSize="30dp"
-            app:autoFocusButtonVisible="false"
-            app:flashButtonVisible="false"/>
+            android:orientation="vertical">
 
-        <LinearLayout
+                <LinearLayout
+                    android:id="@+id/btn_cam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="70dp"
+                    android:background="@drawable/cus_btn_per"
+                    android:elevation="10dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:src="@drawable/ic_baseline_camera_alt_24" />
+
+                        <TextView
+                            android:layout_width="250dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="center"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="QUÉT BẰNG CAMERA"
+                            android:letterSpacing="0.1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="70dp"
+                    android:background="@drawable/cus_btn_per"
+                    android:elevation="10dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_cam">
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:src="@drawable/ic_baseline_image_24" />
+
+                        <TextView
+                            android:layout_width="250dp"
+                            android:layout_height="55dp"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="center"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="QUÉT BẰNG HÌNH ẢNH"
+                            android:letterSpacing="0.1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/scan"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:background="@null"
-            android:weightSum="3">
-                <ImageButton
-                    android:id="@+id/scan_gallery"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+                <com.budiyev.android.codescanner.CodeScannerView
+                    android:id="@+id/scanner_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_add_image"
-                    android:background="@null"
-                    app:tint="@color/cus_text"/>
-                <ImageButton
-                    android:id="@+id/rotate_cam"
+                    app:frameAspectRatioHeight="1"
+                    app:frameAspectRatioWidth="1"
+                    app:frameColor="#F06292"
+                    app:frameSize=".75"
+                    app:frameCornersRadius="30dp"
+                    app:frameThickness="4dp"
+                    app:frameCornersSize="30dp"
+                    app:autoFocusButtonVisible="false"
+                    app:flashButtonVisible="false"/>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_rotate_cam"
-                    android:background="@null"/>
+                    android:layout_height="70dp"
+                    android:background="@null"
+                    android:weightSum="3">
+                        <ImageButton
+                            android:id="@+id/scan_gallery"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_add_image"
+                            android:background="@null"
+                            app:tint="@color/cus_text"/>
+                        <ImageButton
+                            android:id="@+id/rotate_cam"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_rotate_cam"
+                            android:background="@null"/>
+                        <ImageButton
+                            android:id="@+id/btn_flash"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_flash_on"
+                            android:background="@null"/>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    android:layout_gravity="right|center_vertical">
+                        <SeekBar
+                            android:id="@+id/zoom_frame"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="-75dp"
+                            android:progress="75"
+                            android:progressTint="#F06292"
+                            android:rotation="270"
+                            android:thumbTint="#F06292" />
+
+                        <ImageButton
+                            android:id="@+id/plus_frame"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="88dp"
+                            android:layout_marginTop="30dp"
+                            android:background="@null"
+                            android:src="@drawable/plus_frame"
+                            app:tint="@color/primay_icon"/>
+
+                        <ImageButton
+                            android:id="@+id/minus_frame"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="88dp"
+                            android:layout_marginBottom="30dp"
+                            android:background="@null"
+                            android:src="@drawable/minus_frame"
+                            app:tint="@color/primay_icon" />
+
+                </RelativeLayout>
                 <ImageButton
-                    android:id="@+id/btn_flash"
+                    android:id="@+id/btn_BarCode"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cus_btn_scanqr"
+                    android:src="@drawable/ic_barcode"
+                    android:layout_gravity="bottom|left"
+                    android:layout_marginBottom="80dp"
+                    android:layout_marginLeft="50dp"
+                    android:padding="5dp"/>
+                <ImageButton
+                    android:id="@+id/btn_QRCODE"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cus_btn_scanqr2"
+                    android:src="@drawable/ic_qrcode"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginBottom="80dp"
+                    android:layout_marginRight="50dp"
+                    android:padding="5dp"/>
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_flash_on"
-                    android:background="@null"/>
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="300dp"
-            android:layout_gravity="right|center_vertical">
-                <SeekBar
-                    android:id="@+id/zoom_frame"
-                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="-75dp"
-                    android:progress="75"
-                    android:progressTint="#F06292"
-                    android:rotation="270"
-                    android:thumbTint="#F06292" />
-
-                <ImageButton
-                    android:id="@+id/plus_frame"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="88dp"
-                    android:layout_marginTop="30dp"
-                    android:background="@null"
-                    android:src="@drawable/plus_frame"
-                    app:tint="@color/primay_icon"/>
-
-                <ImageButton
-                    android:id="@+id/minus_frame"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="88dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@null"
-                    android:src="@drawable/minus_frame"
-                    app:tint="@color/primay_icon" />
-
-        </RelativeLayout>
-        <ImageButton
-            android:id="@+id/btn_BarCode"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/cus_btn_scanqr"
-            android:src="@drawable/ic_barcode"
-            android:layout_gravity="bottom|left"
-            android:layout_marginBottom="80dp"
-            android:layout_marginLeft="50dp"
-            android:padding="5dp"/>
-        <ImageButton
-            android:id="@+id/btn_QRCODE"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/cus_btn_scanqr2"
-            android:src="@drawable/ic_qrcode"
-            android:layout_gravity="bottom|right"
-            android:layout_marginBottom="80dp"
-            android:layout_marginRight="50dp"
-            android:padding="5dp"/>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="30dp">
-                <SeekBar
-                    android:id="@+id/zoom_camera"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:progressTint="@color/primay_icon"
-                    android:thumbTint="@color/primay_icon"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"/>
-                <ImageButton
-                    android:id="@+id/increase"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/outline_zoom_in_black_24"
-                    android:background="@null"
-                    android:layout_alignRight="@id/zoom_camera"
-                    android:layout_marginRight="-20dp"
-                    app:tint="@color/primay_icon"/>
-                <ImageButton
-                    android:id="@+id/decrease"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/outline_zoom_out_black_24"
-                    android:background="@null"
-                    android:layout_alignLeft="@id/zoom_camera"
-                    android:layout_marginLeft="-20dp"
-                    app:tint="@color/primay_icon"/>
-        </RelativeLayout>
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="30dp">
+                        <SeekBar
+                            android:id="@+id/zoom_camera"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:progressTint="@color/primay_icon"
+                            android:thumbTint="@color/primay_icon"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"/>
+                        <ImageButton
+                            android:id="@+id/increase"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/outline_zoom_in_black_24"
+                            android:background="@null"
+                            android:layout_alignRight="@id/zoom_camera"
+                            android:layout_marginRight="-20dp"
+                            app:tint="@color/primay_icon"/>
+                        <ImageButton
+                            android:id="@+id/decrease"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/outline_zoom_out_black_24"
+                            android:background="@null"
+                            android:layout_alignLeft="@id/zoom_camera"
+                            android:layout_marginLeft="-20dp"
+                            app:tint="@color/primay_icon"/>
+                </RelativeLayout>
+        </FrameLayout>
 </FrameLayout>

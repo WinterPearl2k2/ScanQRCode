@@ -1,18 +1,14 @@
 package com.example.scanqrcode;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.LuminanceSource;
@@ -21,7 +17,6 @@ import com.google.zxing.RGBLuminanceSource;
 import com.google.zxing.Reader;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
-import com.google.zxing.qrcode.QRCodeReader;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -29,7 +24,7 @@ import java.io.InputStream;
 public class ScanGallery extends AppCompatActivity {
     Context mcontext;
     Intent mIntent;
-    private static final int request = 10000;
+    private static final int request = 101;
 
     public ScanGallery(Context context, Intent mIntent) {
         this.mcontext = context;
