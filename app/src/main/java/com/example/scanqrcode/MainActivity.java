@@ -2,14 +2,10 @@ package com.example.scanqrcode;
 
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.ActivityCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.scanqrcode.fragment.ScanViewAdapter;
@@ -63,39 +59,25 @@ public class MainActivity extends AppCompatActivity {
     private void EventButtonNavigation() {
         navigation.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
-                case R.id.navigation_create:
-                    viewPager.setCurrentItem(1);
-                    break;
 
                 case R.id.navigation_scan:
-                    viewPager.setCurrentItem(0);
+                    viewPager.setCurrentItem(0, false);
+                    break;
+
+                case R.id.navigation_create:
+                    viewPager.setCurrentItem(1, false);
                     break;
 
                 case R.id.navigation_memory:
-                    viewPager.setCurrentItem(2);
+                    viewPager.setCurrentItem(2, false);
                     break;
 
                 case R.id.navigation_setting:
-                    viewPager.setCurrentItem(3);
+                    viewPager.setCurrentItem(3, false);
                     break;
             }
             return true;
         });
-    }
-
-    boolean checkPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.CAMERA)) {
-                    return false;
-                } else {
-                    return false;
-                }
-            } else {
-                return true;
-            }
-        }
-        return true;
     }
 
     private void AnhXa() {
