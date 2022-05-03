@@ -116,7 +116,6 @@ public class Fragment_Scan_Home extends Fragment{
     }
 
     private void Scan() {
-        mCodeScanner.setAutoFocusEnabled(true);
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
             public void onDecoded(@NonNull final Result result) {
@@ -134,9 +133,9 @@ public class Fragment_Scan_Home extends Fragment{
             }
         });
         scannerView.setOnClickListener(view -> {
-            if(check == true)
-                mCodeScanner.startPreview();
-//            mCodeScanner.setAutoFocusEnabled(true);
+//            if(check == true)
+            mCodeScanner.startPreview();
+            mCodeScanner.setAutoFocusEnabled(true);
         });
     }
 
@@ -292,6 +291,7 @@ public class Fragment_Scan_Home extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
+        mCodeScanner.setAutoFocusEnabled(true);
         if (check == true)
         mCodeScanner.startPreview();
     }
