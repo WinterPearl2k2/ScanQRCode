@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudio/Scancuadong/app/src/main/res/drawable/ic_baseline_search_36.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/Scancuadong/app/src/main/res/drawable/ic_baseline_share_36.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/Scancuadong/app/src/main/res/drawable/ic_baseline_sms_36.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/Scancuadong/app/src/main/res/layout/activity_ean_scan.xml" value="0.14666666666666667" />
+        <entry key="..\:/AndroidStudio/Scancuadong/app/src/main/res/layout/fragment_scan_home.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/Scancuadong/app/src/main/res/menu/navigation.xml" value="0.1" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable-xhdpi/shadow_image.xml" value="0.26205128205128203" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/cus_btn.xml" value="0.14166666666666666" />
         <entry key="..\:/Lap trinh/ScanQRCode2/app/src/main/res/drawable/cus_btn_per.xml" value="0.1859375" />

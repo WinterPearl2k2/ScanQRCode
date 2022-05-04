@@ -4,21 +4,21 @@
     <item
         android:id="@+id/navigation_scan"
         android:icon="@drawable/outline_qr_code_scanner_black_48"
-        android:title="Quét" />
+        android:title="@string/navi_scan" />
 
     <item
         android:id="@+id/navigation_create"
         android:icon="@drawable/outline_drive_file_rename_outline_black_48"
-        android:title="Tạo" />
+        android:title="@string/navi_create" />
 
     <item
         android:id="@+id/navigation_memory"
         android:icon="@drawable/outline_history_black_48"
-        android:title="Lịch sử" />
+        android:title="@string/navi_history" />
 
     <item
         android:id="@+id/navigation_setting"
         android:icon="@drawable/outline_settings_black_48"
-        android:title="Cài đặt" />
+        android:title="@string/navi_setting" />
 
 </menu>

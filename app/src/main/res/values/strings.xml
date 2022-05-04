@@ -8,4 +8,14 @@
     <string name="showper_allow">Cho phép</string>
     <string name="showsetting_title">Chưa cấp quyền cam</string>
     <string name="showsetting_message">Chỉ có thể quét bằng camera khi được cấp quyền, vui lòng truy cập vào cài đặt để cấp quyền camera.</string>
+    <string name="permission_settings">Cài đặt</string>
+    <string name="scanbycamera">QUÉT BẰNG CAMERA</string>
+    <string name="scanbyimage">QUÉT BẰNG HÌNH ẢNH</string>
+    <string name="navi_scan">Quét</string>
+    <string name="navi_create">Tạo</string>
+    <string name="navi_history">Lịch sử</string>
+    <string name="navi_setting">Cài đặt</string>
+    <string name="EAN_title">Product</string>
+    <string name="EAN_findproduct">Tìm kiếm sản phẩm</string>
+    <string name="EAN_shareQR">Chia sẻ mã QR</string>
 </resources>

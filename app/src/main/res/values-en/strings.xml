@@ -8,4 +8,11 @@
     <string name="showper_title">Not yet granted permission</string>
     <string name="showsetting_title">Not yet granted permission</string>
     <string name="showsetting_message">Can only scan with the camera when granted permission, please go to settings to grant camera permission.</string>
+    <string name="permission_settings">Setting</string>
+    <string name="scanbycamera">SCAN BY CAMERA</string>
+    <string name="scanbyimage">SCAN BY IMAGE</string>
+    <string name="navi_scan">Scan</string>
+    <string name="navi_create">Create</string>
+    <string name="navi_history">History</string>
+    <string name="navi_setting">Setitings</string>
 </resources>

@@ -621,7 +621,7 @@ public class EAN extends AppCompatActivity {
                 ss += s.charAt(i);
             }
             if (ss.equals("EAN") || ss.equals("UPC")) {
-                txtTitleResult.setText("Product");
+                txtTitleResult.setText(R.string.EAN_title);
                 ClickLink("https://www.google.com/search?q=" + result);
             } else {
                 txtTitleResult.setText("Text");

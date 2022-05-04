@@ -424,7 +424,7 @@ public class Fragment_Scan_Home extends Fragment{
                         dialogInterface.cancel();
                     }
                 })
-                .setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.permission_settings, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
