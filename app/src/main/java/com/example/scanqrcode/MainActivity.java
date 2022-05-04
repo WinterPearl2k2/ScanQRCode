@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private void SetupViewPager2() {
         scanViewAdapter = new ScanViewAdapter(this);
         viewPager.setAdapter(scanViewAdapter);
-        viewPager.setUserInputEnabled(false);
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {

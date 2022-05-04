@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,7 +35,16 @@ import com.budiyev.android.codescanner.DecodeCallback;
 import com.example.scanqrcode.EAN;
 import com.example.scanqrcode.R;
 import com.example.scanqrcode.ScanGallery;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.RGBLuminanceSource;
+import com.google.zxing.Reader;
 import com.google.zxing.Result;
+import com.google.zxing.common.HybridBinarizer;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class Fragment_Scan_Home extends Fragment{
     private final static int requestPer = 100;
@@ -70,10 +82,7 @@ public class Fragment_Scan_Home extends Fragment{
         btn_Gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent photoItent = new Intent(Intent.ACTION_PICK);
-                scanGallery = new ScanGallery(getActivity(), photoItent);
-                photoItent.setType("image/*");
-                startActivityForResult(photoItent, 101);
+                ScanByGallery();
             }
         });
 
@@ -99,20 +108,21 @@ public class Fragment_Scan_Home extends Fragment{
         ZoomCamera();
         FlashSwitch();
         RotateCamera();
-        ScanByGallery();
+        btn_scan_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ScanByGallery();
+            }
+        });
         return view;
     }
 
     private void ScanByGallery() {
-        btn_scan_gallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 Intent photoItent = new Intent(Intent.ACTION_PICK);
                 scanGallery = new ScanGallery(getActivity(), photoItent);
                 photoItent.setType("image/*");
                 startActivityForResult(photoItent, 101);
-            }
-        });
+
     }
 
     private void Scan() {
@@ -323,7 +333,46 @@ public class Fragment_Scan_Home extends Fragment{
             check = true;
             openScan();
         }else if(requestCode == 101) {
-            scanGallery.onActivityResult(requestCode, resultCode, data);
+            try {
+                /*Sau khi hoàn hành xong 1 activity thì nó sẽ trả về trong biến data
+                    dựa trên action code là requestCode , và xác định bằng resultCode
+                  kết quả trả về sẽ là 1 Uri , từ Uri đó mình sẽ bỏ vào 1 InputStream để convert nó về Bitmap để set
+                * */
+                //Lấy dữ liệu từ data
+                final Uri imageUri = data.getData();
+
+                if(imageUri != null) {
+                    //Lấy trình giải quyết nội dung và mở trình đầu vào
+                    final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                    //Chuyển dữ liệu thành bitmap
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+
+                    Bitmap bMap = selectedImage;
+
+                    //Lấy diện tích của hình ảnh
+                    int[] intArray = new int[bMap.getWidth() * bMap.getHeight()];
+                    //Đọc toàn bộ điểm ảnh vào 1 số nguyên
+                    bMap.getPixels(intArray, 0, bMap.getWidth(), 0, 0, bMap.getWidth(), bMap.getHeight());
+
+                    //Chuyển các điểm ảnh thành chuỗi nhị phân
+                    LuminanceSource source = new RGBLuminanceSource(bMap.getWidth(), bMap.getHeight(), intArray);
+                    BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+
+                    Reader reader = new MultiFormatReader();
+                    Result result = reader.decode(bitmap);
+
+                    Intent intent = new Intent(getActivity(), EAN.class);
+                    intent.putExtra("linksp", result.getText());
+                    intent.putExtra("title", result.getBarcodeFormat().toString());
+                    getActivity().startActivity(intent);
+                }
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else if(requestCode == 100 && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             check = true;
             openScan();
