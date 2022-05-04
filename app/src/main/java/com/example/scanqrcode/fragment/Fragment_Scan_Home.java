@@ -397,7 +397,7 @@ public class Fragment_Scan_Home extends Fragment{
     }
 
     public void showPer() {
-        new AlertDialog.Builder(getActivity()).setCancelable(false).setTitle("Chưa cấp quyền cam")
+        new AlertDialog.Builder(getActivity()).setCancelable(false).setTitle("Chưa cấp quyền cam")//hello
                 .setMessage("Vui lòng cấp quyền cho camera để sử dụng tín năng quét")
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
