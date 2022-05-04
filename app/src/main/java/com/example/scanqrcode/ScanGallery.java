@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -25,6 +26,12 @@ public class ScanGallery extends AppCompatActivity {
     Context mcontext;
     Intent mIntent;
     private static final int request = 101;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+    }
 
     public ScanGallery(Context context, Intent mIntent) {
         this.mcontext = context;
