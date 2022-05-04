@@ -446,15 +446,15 @@ public class Fragment_Scan_Home extends Fragment{
     }
 
     public void showPer() {
-        new AlertDialog.Builder(getActivity()).setCancelable(false).setTitle("Chưa cấp quyền cam")
-                .setMessage("Vui lòng cấp quyền cho camera để sử dụng tín năng quét")
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(getActivity()).setCancelable(false).setTitle(R.string.showper_title)//hello
+                .setMessage(R.string.showper_message)
+                .setNegativeButton(R.string.showper_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
                     }
                 })
-                .setPositiveButton("Allow", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.showper_allow, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 //                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, requestPer);
@@ -465,9 +465,9 @@ public class Fragment_Scan_Home extends Fragment{
     }
 
     private void showSetting() {
-        new AlertDialog.Builder(getActivity()).setCancelable(false).setTitle("Chưa cấp quyền cam")
-                .setMessage("Chỉ có thể quét bằng camera khi được cấp quyền, vui lòng truy cập vào cài đặt để cấp quyền camera.")
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(getActivity()).setCancelable(false).setTitle(R.string.showsetting_title)
+                .setMessage(R.string.showsetting_message)
+                .setNegativeButton(R.string.showper_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
