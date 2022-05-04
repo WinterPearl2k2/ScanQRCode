@@ -15,7 +15,11 @@
     <string name="navi_create">Tạo</string>
     <string name="navi_history">Lịch sử</string>
     <string name="navi_setting">Cài đặt</string>
-    <string name="EAN_title">Product</string>
+    <string name="EAN_title">Sản phẩm</string>
     <string name="EAN_findproduct">Tìm kiếm sản phẩm</string>
     <string name="EAN_shareQR">Chia sẻ mã QR</string>
+    <string name="EAN_accesslink">Truy cập liên kết</string>
+    <string name="EAN_email">"Gửi email từ "</string>
+    <string name="EAN_wifi">Chuyển hướng tới mạng Wifi</string>
+    <string name="EANwep">Rất tiếc, phương pháp mã hoá WEP không còn được Google hỗ trợ kể từ phiên bản Android 10 :(</string>
 </resources>

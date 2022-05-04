@@ -94,12 +94,12 @@ public class EAN extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent share = new Intent(Intent.ACTION_SEND);
-//                share.setType("text/plain");
-//                share.putExtra(Intent.EXTRA_TEXT, result);
-                String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "Image Description", null);
-                Uri screen = Uri.parse(path);
-                share.setType("image/jpeg");
-                share.putExtra(Intent.EXTRA_STREAM, screen);
+                share.setType("text/plain");
+                share.putExtra(Intent.EXTRA_TEXT, result);
+//                String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "Image Description", null);
+//                Uri screen = Uri.parse(path);
+//                share.setType("image/*");
+//                share.putExtra(Intent.EXTRA_STREAM, screen);
                 startActivity(Intent.createChooser(share, "Share image"));
             }
         });
@@ -166,7 +166,7 @@ public class EAN extends AppCompatActivity {
                     for(int i = d ; i < result.length() ; i++) {
                         link += result.charAt(i);
                     }
-                    txtSearch.setText("Truy cập liên kết");
+                    txtSearch.setText(R.string.EAN_accesslink);
                     imgSearch.setImageResource(R.drawable.ic_baseline_insert_link_36);
                     view.setText(result);
                     ClickLink(link.length() > 0 ? ("https:" + link) : "");
@@ -176,7 +176,7 @@ public class EAN extends AppCompatActivity {
                     for(int i = d ; i < result.length() ; i++) {
                         link += result.charAt(i);
                     }
-                    txtSearch.setText("Truy cập liên kết");
+                    txtSearch.setText(R.string.EAN_accesslink);
                     imgSearch.setImageResource(R.drawable.ic_baseline_insert_link_36);
                     view.setText(result);
                     ClickLink(link.length() > 0 ? ("http:" + link) : "");
@@ -201,7 +201,7 @@ public class EAN extends AppCompatActivity {
                             }
                         }else d = i;
                     }
-                    txtSearch.setText("Gửi email từ " + TO);
+                    txtSearch.setText(getString(R.string.EAN_email) + TO);
                     imgSearch.setImageResource(R.drawable.ic_baseline_email_36);
                     view.setText((TO.length() > 0 ? ("To: " + TO): "")
                             + (SUB.length() > 0 ? ("\nSubject: " + SUB): "")
@@ -239,7 +239,7 @@ public class EAN extends AppCompatActivity {
                             }
                         }else d = i;
                     }
-                    txtSearch.setText("Chuyển hướng tới mạng Wifi");
+                    txtSearch.setText(R.string.EAN_wifi);
                     imgSearch.setImageResource(R.drawable.ic_baseline_wifi_36);
                     view.setText((S.length() > 0 ? ("Network Name: " + S): "")
                             + (P.length() > 0 ? ("\nPassword: " + P): "")
@@ -251,7 +251,7 @@ public class EAN extends AppCompatActivity {
                         public void onClick(View view) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(EAN.this);
                             if(T.equals("WEP")) {
-                                builder.setMessage("Rất tiếc, phương pháp mã hoá WEP không còn được Google hỗ trợ kể từ phiên bản Android 10 :(")
+                                builder.setMessage(R.string.EANwep)
                                         .setNegativeButton("OK", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {

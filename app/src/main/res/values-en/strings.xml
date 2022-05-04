@@ -15,4 +15,11 @@
     <string name="navi_create">Create</string>
     <string name="navi_history">History</string>
     <string name="navi_setting">Setitings</string>
+    <string name="EAN_title">Product</string>
+    <string name="EAN_findproduct">Find product</string>
+    <string name="EAN_shareQR">Share QR code</string>
+    <string name="EAN_accesslink">Access the link</string>
+    <string name="EAN_email">From</string>
+    <string name="EAN_wifi">Redirect to Wifi network</string>
+    <string name="EANwep">"Unfortunately, the WEP encryption method is no longer supported by Google as of Android 10 version "</string>
 </resources>
