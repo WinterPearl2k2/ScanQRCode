@@ -1,11 +1,8 @@
 package com.example.scanqrcode;
 
-import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
-
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.scanqrcode.fragment.ScanViewAdapter;
@@ -13,7 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigation;
-    ViewPager2 viewPager;
+    public static ViewPager2 viewPager;
     ScanViewAdapter scanViewAdapter;
 
     @Override
@@ -21,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null)
             getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO);
+//        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
         AnhXa();
         SetupViewPager2();
@@ -31,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private void SetupViewPager2() {
         scanViewAdapter = new ScanViewAdapter(this);
         viewPager.setAdapter(scanViewAdapter);
+        viewPager.setUserInputEnabled(false);
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
