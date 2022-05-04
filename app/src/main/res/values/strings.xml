@@ -4,8 +4,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="showper_title">Chưa cấp quyền cam</string>
     <string name="showper_message">Vui lòng cấp quyền cho camera để sử dụng tín năng quét</string>
-    <string name="showper_cancel">Cancel</string>
-    <string name="showper_allow">Allow</string>
+    <string name="showper_cancel">Từ chối</string>
+    <string name="showper_allow">Cho phép</string>
     <string name="showsetting_title">Chưa cấp quyền cam</string>
     <string name="showsetting_message">Chỉ có thể quét bằng camera khi được cấp quyền, vui lòng truy cập vào cài đặt để cấp quyền camera.</string>
 </resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Scan</string>
+    <string name="showper_message">Please grant the camera permission to use the scan feature</string>
+    <string name="showper_cancel">Cancel</string>
+    <string name="showper_allow">Allow</string>
+    <string name="hello_blank_fragment">Xin chào</string>
+    <string name="showper_title">Not yet granted permission</string>
+    <string name="showsetting_title">Not yet granted permission</string>
+    <string name="showsetting_message">Can only scan with the camera when granted permission, please go to settings to grant camera permission.</string>
+</resources>
