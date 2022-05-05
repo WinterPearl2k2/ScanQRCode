@@ -22,4 +22,25 @@
     <string name="EAN_email">"Gửi email từ "</string>
     <string name="EAN_wifi">Chuyển hướng tới mạng Wifi</string>
     <string name="EANwep">Rất tiếc, phương pháp mã hoá WEP không còn được Google hỗ trợ kể từ phiên bản Android 10 :(</string>
+    <string name="EAN_ok">OK</string>
+    <string name="EAN_wfmess">.  Mật khẩu của bạn đã được sao chép, ấn OK để chuyển hướng đến cài đặt.</string>
+    <string name="EAN_tel">Quay số</string>
+    <string name="EAN_addcontact">Thêm liên hệ</string>
+    <string name="EAN_sms">Gửi tin nhắn</string>
+    <string name="EAN_accesslocation">Truy cập vị trí</string>
+    <string name="EAN_fullname">"Full name: "</string>
+    <string name="EAN_company">"Company: "</string>
+    <string name="EAN_job">"Job:  "</string>
+    <string name="EAN_address">"Address: "</string>
+    <string name="EAN_telphone">"Telephone: "</string>
+    <string name="EAN_mobinumber">" Mobile number: "</string>
+    <string name="EAN_til">" Tiêu đề: "</string>
+    <string name="EAN_datebegin">" Ngày bắt đầu: "</string>
+    <string name="EAN_endate">" Ngày kết thúc: "</string>
+    <string name="EAN_location">" Địa điểm: "</string>
+    <string name="EAN_descrip">" Mô tả: "</string>
+    <string name="EAN_addangeny">Thêm lịch trình</string>
+    <string name="EAN_netwworkname">" Network Name: "</string>
+    <string name="EAN_encry">" Encrytion: "</string>
+    <string name="EAN_message">" Message: "</string>
 </resources>

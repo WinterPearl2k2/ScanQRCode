@@ -241,9 +241,9 @@ public class EAN extends AppCompatActivity {
                     }
                     txtSearch.setText(R.string.EAN_wifi);
                     imgSearch.setImageResource(R.drawable.ic_baseline_wifi_36);
-                    view.setText((S.length() > 0 ? ("Network Name: " + S): "")
+                    view.setText((S.length() > 0 ? (getString(R.string.EAN_netwworkname) + S): "")
                             + (P.length() > 0 ? ("\nPassword: " + P): "")
-                            + (T.length() > 0 ? ("\nEncrytion: " + T): "")
+                            + (T.length() > 0 ? (getString(R.string.EAN_encry) + T): "")
                             + "\nHidden: " + (H.equals("true")? H.toUpperCase() : "NO"));
 
                     button.setOnClickListener(new View.OnClickListener() {
@@ -252,16 +252,16 @@ public class EAN extends AppCompatActivity {
                             AlertDialog.Builder builder = new AlertDialog.Builder(EAN.this);
                             if(T.equals("WEP")) {
                                 builder.setMessage(R.string.EANwep)
-                                        .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                                        .setNegativeButton(R.string.EAN_ok, new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
                                                 dialogInterface.cancel();
                                             }
                                         }).show();
                             } else {
-                                builder.setMessage("Chuyển hướng đến mạng Wifi: " + S
-                                                    + ". \nMật khẩu của bạn đã được sao chép, ấn OK để chuyển hướng đến cài đặt.")
-                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                builder.setMessage(R.string.EAN_wifi + S
+                                                    + getString(R.string.EAN_wfmess))
+                                        .setPositiveButton(R.string.EAN_ok, new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
                                                 Intent wifi = new Intent(Settings.ACTION_WIFI_SETTINGS);
@@ -282,7 +282,7 @@ public class EAN extends AppCompatActivity {
                                                 manager.reconnect();
                                             }
                                         })
-                                        .setNegativeButton("Huỷ", new DialogInterface.OnClickListener() {
+                                        .setNegativeButton(R.string.showper_cancel, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             dialogInterface.cancel();
@@ -297,9 +297,9 @@ public class EAN extends AppCompatActivity {
                     for(int i = d + 1 ; i < result.length() ; i++) {
                         TEL += result.charAt(i);
                     }
-                    txtSearch.setText("Quay số");
+                    txtSearch.setText(R.string.EAN_tel);
                     imgSearch.setImageResource(R.drawable.ic_baseline_local_phone_36);
-                    txtAddContact.setText("Thêm liên hệ");
+                    txtAddContact.setText(R.string.EAN_addcontact);
                     imgAddContact.setImageResource(R.drawable.ic_baseline_add_ic_call_36);
                     llAddContact.setVisibility(View.VISIBLE);
                     llAddContact.setOnClickListener(new View.OnClickListener() {
@@ -330,9 +330,9 @@ public class EAN extends AppCompatActivity {
                         else if (flag == 1)
                             SMS += result.charAt(i);
                     }
-                    txtSearch.setText("Gửi tin nhắn");
+                    txtSearch.setText(R.string.EAN_sms);
                     imgSearch.setImageResource(R.drawable.ic_baseline_sms_36);
-                    txtAddContact.setText("Thêm liên hệ");
+                    txtAddContact.setText(R.string.EAN_addcontact);
                     imgAddContact.setImageResource(R.drawable.ic_baseline_add_ic_call_36);
                     llAddContact.setVisibility(View.VISIBLE);
                     llAddContact.setOnClickListener(new View.OnClickListener() {
@@ -342,7 +342,7 @@ public class EAN extends AppCompatActivity {
                         }
                     });
                     view.setText((TEL.length() > 0 ? ("Phone: " + TEL): "")
-                            + (SMS.length() > 0 ? ("\nMessage: " + SMS): ""));
+                            + (SMS.length() > 0 ? (getString(R.string.EAN_message) + SMS): ""));
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -365,7 +365,7 @@ public class EAN extends AppCompatActivity {
                         else if (flag == 1)
                             LONGITUDE += result.charAt(i);
                     }
-                    txtSearch.setText("Truy cập vị trí");
+                    txtSearch.setText(R.string.EAN_accesslocation);
                     imgSearch.setImageResource(R.drawable.ic_baseline_map_36);
                     view.setText((LATITUDE.length() > 0 ? ("LATITUDE: " + LATITUDE): "")
                             + (LONGITUDE.length() > 0 ? ("\nLONGITUDE: " + LONGITUDE): ""));
@@ -500,17 +500,17 @@ public class EAN extends AppCompatActivity {
                             Json = "";
                         }
 //                        (EMAIL1.length() > 0 ? ("\nEmail: " + EMAIL1): ""
-                        view.setText((FN.length() > 0 ? ("Full name: " + FN): "")
-                                + (ORG.length() > 0 ? ("\nCompany: " + ORG): "")
-                                + (TITLE.length() > 0 ? ("\nJob: " + TITLE): "")
-                                + (ADR.length() > 0 ? ("\nAddress: " + ADR): "")
-                                + (WORK.length() > 0 ? ("\nTelephone: " + WORK): "")
-                                + (CELL.length() > 0 ? ("\nMobile number: " + CELL): "")
+                        view.setText((FN.length() > 0 ? (getString(R.string.EAN_fullname) + FN): "")
+                                + (ORG.length() > 0 ? (getString(R.string.EAN_company) + ORG): "")
+                                + (TITLE.length() > 0 ? (getString(R.string.EAN_job) + TITLE): "")
+                                + (ADR.length() > 0 ? (getString(R.string.EAN_address) + ADR): "")
+                                + (WORK.length() > 0 ? (getString(R.string.EAN_telphone) + WORK): "")
+                                + (CELL.length() > 0 ? (getString(R.string.EAN_mobinumber) + CELL): "")
                                 + (FAX.length() > 0 ? ("\nFax: " + FAX): "")
                                 + (EMAIL1.length() > 0 ? ("\nEmail: " + EMAIL1): "")
                                 + (EMAIL2.length() > 0 ? ("\nEmail: " + EMAIL2): "")
                                 + (URL.length() > 0 ? ("\nLink: " + URL): "")) ;
-                        txtAddContact.setText("Thêm liên hệ");
+                        txtAddContact.setText(R.string.EAN_addcontact);
                         imgAddContact.setImageResource(R.drawable.ic_baseline_add_ic_call_36);
                         llAddContact.setVisibility(View.VISIBLE);
                         llAddContact.setOnClickListener(new View.OnClickListener() {
@@ -523,6 +523,7 @@ public class EAN extends AppCompatActivity {
                         title = "EVENT";
                         txtTitleResult.setText(title);
                         Json = "";
+//
                         for(int i = 0; i < result.length(); i++) {
                             for(int j = i; j < result.length(); j++) {
                                 if(result.charAt(j) == ':') {
@@ -582,12 +583,12 @@ public class EAN extends AppCompatActivity {
                             Json = "";
                         }
 
-                        view.setText((SUMMARY.length() > 0 ? ("Tiêu đề: " + SUMMARY): "")
-                                    + (DTSTART.length() > 0 ? ("\nNgày bắt đầu: " + DTSTART): "")
-                                    + (DTEND.length() > 0 ? ("\nNgày kết thúc: " + DTEND): "")
-                                    + (LOCATION.length() > 0 ? ("\nĐịa điểm: " + LOCATION): "")
-                                    + (DESCRIPTION.length() > 0 ? ("\nMô tả: " + DESCRIPTION): ""));
-                        txtAddContact.setText("Thêm lịch trình");
+                        view.setText((SUMMARY.length() > 0 ? (getString(R.string.EAN_til) + SUMMARY): "")
+                                    + (DTSTART.length() > 0 ? (getString(R.string.EAN_datebegin) + DTSTART): "")
+                                    + (DTEND.length() > 0 ? (getString(R.string.EAN_endate) + DTEND): "")
+                                    + (LOCATION.length() > 0 ? (getString(R.string.EAN_location) + LOCATION): "")
+                                    + (DESCRIPTION.length() > 0 ? (getString(R.string.EAN_descrip) + DESCRIPTION): ""));
+                        txtAddContact.setText(R.string.EAN_addangeny);
                         imgAddContact.setImageResource(R.drawable.ic_baseline_edit_calendar_36);
                         llAddContact.setVisibility(View.VISIBLE);
                         llAddContact.setOnClickListener(new View.OnClickListener() {
